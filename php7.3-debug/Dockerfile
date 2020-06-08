@@ -10,7 +10,7 @@ RUN yum -y --setopt tsflags=nodocs --setopt timeout=5 install \
   && rpm --import RPM-GPG-KEY-oracle-ol7 \
   && yum-config-manager --enable ol7_oracle_instantclient \
   && yum update -y \
-  && yum install -y \
+  && yum -y --setopt tsflags=nodocs --setopt timeout=5 install \
   bzip2 \
   libxml2-devel \
   unzip \
