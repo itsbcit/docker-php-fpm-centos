@@ -1,9 +1,13 @@
 ---
-image_name: template_test
+image_name: openshift-php-fpm-ora-inst-client
 org_name: bcit
-labels:
-  maintainer: "jesse@weisner.ca, chriswood.ca@gmail.com"
+versions:
+  'php7.3':
 vars:
-  tini_version: '0.18.0'
-  de_version: '1.5'
-  dockerize_version: '0.6.0'
+  centos_version: '7-latest'
+  php_version: '73'
+  oracle-instantclient_version: '19.6'
+  timezone: 'America/Vancouver'
+variants:
+  '':
+  debug:
