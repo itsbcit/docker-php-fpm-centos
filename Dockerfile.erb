@@ -47,7 +47,8 @@ RUN echo /usr/lib/oracle/<%= image.vars['oracle-instantclient_version'] -%>/clie
   && sed -i s/127.0.0.1:9000/0.0.0.0:9000/ /etc/php-fpm.d/www.conf \
   && sed -i s/127.0.0.1/any/ /etc/php-fpm.d/www.conf \
   && chmod -R 775 /run/php-fpm \
-  && chmod -R 775 /etc/php-fpm.d
+  && chmod -R 775 /etc/php-fpm.d \
+  && chmod -R 775 /etc/php.d
 
 <% if image.variant == 'debug' -%>
 # Configure default php.ini file based on environment; Install xdebug from PECL if we're building a DEV environment
