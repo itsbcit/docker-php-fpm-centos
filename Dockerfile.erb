@@ -1,9 +1,11 @@
 FROM bcit/centos:<%= image.vars['centos_version'] %>
 
+<%= snippet('labels', binding) -%>
+
 # enable php7 & oracle repos then install system libs/utils, php-fpm, oracle-instantclient
 RUN yum -y --setopt tsflags=nodocs --setopt timeout=5 install \
     http://rpms.remirepo.net/enterprise/remi-release-7.rpm \
-  && yum-config-manager --enable remi-php<%= image.vars['php_version'] -%> \
+  && yum-config-manager --enable remi-php<%= image.vars['remi_php_repo'] -%> \
   && cd /etc/yum.repos.d \
   && wget http://yum.oracle.com/public-yum-ol7.repo \
   && wget http://yum.oracle.com/RPM-GPG-KEY-oracle-ol7 \
@@ -17,18 +19,13 @@ RUN yum -y --setopt tsflags=nodocs --setopt timeout=5 install \
   vim \
   zip \
   # php
-  php \
-  php-fpm \
-  php-mbstring \
-  php-mysqlnd \
-  php-oci8 \
-  php-pear \
-  php-pdo \
-  php-posix \
-  php-soap \
-  php-sodium \
-  php-xml \
-  php-pecl-igbinary \
+  php-<%= image.vars['php_pkg_version'] -%>
+<% image.vars['php_extensions'].each do |ext| -%> \
+  php-<%= ext %>-<%= image.vars['php_pkg_version'] -%>
+<% end -%>
+<% image.vars['php_pecl'].each do |ext| -%> \
+  php-pecl-<%= ext -%>
+<% end -%> \
   # oracle-instantclient
   oracle-instantclient<%= image.vars['oracle-instantclient_version'] -%>-basic \
   oracle-instantclient<%= image.vars['oracle-instantclient_version'] -%>-devel \

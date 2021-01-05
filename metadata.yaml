@@ -2,12 +2,39 @@
 image_name: openshift-php-fpm-ora-inst-client
 org_name: bcit
 versions:
-  'php7.3':
+  '7.3':
+    version_tags:
+      - '7.3-latest'
+      - '7.3.26'
+    vars:
+      oracle-instantclient_version: '19.6'
+      remi_php_repo: '73'
+      php_pkg_version: '7.3.26'
+  '7.4':
+    version_tags:
+      - '7.4-latest'
+      - '7.4.14'
+      - '7-latest'
+    vars:
+      oracle-instantclient_version: '19.6'
+      remi_php_repo: '74'
+      php_pkg_version: '7.4.14'
 vars:
   centos_version: '7-latest'
-  php_version: '73'
-  oracle-instantclient_version: '19.6'
   timezone: 'America/Vancouver'
+  php_extensions:
+    - fpm
+    - mbstring
+    - mysqlnd
+    - oci8
+    - pear
+    - pdo
+    - posix
+    - soap
+    - sodium
+    - xml
+  php_pecl:
+    - igbinary
 variants:
   '':
   debug:
