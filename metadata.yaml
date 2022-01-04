@@ -38,4 +38,4 @@ vars:
     - igbinary
 variants:
   '':
-  debug:
+  'oci':
