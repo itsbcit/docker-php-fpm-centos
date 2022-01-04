@@ -46,11 +46,10 @@ RUN echo /usr/lib/oracle/<%= image.vars['oracle-instantclient_version'] -%>/clie
   && chmod -R 775 /etc/php-fpm.d \
   && chmod -R 775 /etc/php.d
 
-<% if image.variant == 'debug' -%>
 # Configure default php.ini file based on environment; Install xdebug from PECL if we're building a DEV environment
 # Production php.ini by default
 RUN echo '=============== DEV flagged, Installing xdebug & dev config ===============' \ 
-  && wget https://raw.githubusercontent.com/php/php-src/PHP-$(rpm -q --queryformat="%{VERSION}" php)/php.ini-development -O /etc/php.ini \
+  && wget https://raw.githubusercontent.com/php/php-src/PHP-$(rpm -q --queryformat="%{VERSION}" php)/php.ini-development /etc/php.ini-development \
   && yum install -y php-pecl-xdebug \
   && php -v \
   && echo '=============== xdebug installed ===============' \
