@@ -37,7 +37,7 @@ RUN ln -snf /usr/share/zoneinfo/<%= image.vars['timezone'] -%> /etc/localtime \
 # Configure default php.ini file based on environment; Install xdebug from PECL if we're building a DEV environment
 # Production php.ini by default
 RUN echo '=============== DEV flagged, Installing xdebug & dev config ===============' \ 
-  && wget https://raw.githubusercontent.com/php/php-src/PHP-$(rpm -q --queryformat="%{VERSION}" php)/php.ini-development /etc/php.ini-development \
+  && wget https://raw.githubusercontent.com/php/php-src/PHP-<%= image.vars['php_pkg_version'] %>/php.ini-development /etc/php.ini-development \
   && yum install -y php-pecl-xdebug \
   && php -v \
   && echo '=============== xdebug installed ===============' \
