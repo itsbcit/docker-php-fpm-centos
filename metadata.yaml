@@ -39,3 +39,5 @@ vars:
 variants:
   '':
   'oci':
+    registries:
+      - url: artifactory.tis.bcit.ca:5000
