@@ -2,6 +2,8 @@
 maintainer: 'jesse@weisner.ca, chriswood.ca@gmail.com, jonathan_zhao@bcit.ca'
 registries:
   - url: bcit.io
+labels:
+  php_version: '<%= vars["php_pkg_version"] %>'
 image_name: php-fpm
 versions:
   '7.3':
