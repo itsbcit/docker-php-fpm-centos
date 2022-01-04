@@ -2,16 +2,10 @@ FROM bcit.io/centos:<%= image.vars['centos_version'] %>
 
 <%= snippet('labels', binding) -%>
 
-# enable php7 & oracle repos then install system libs/utils, php-fpm, oracle-instantclient
+# enable php7 & oracle repos then install system libs/utils, php-fpm
 RUN yum -y --setopt tsflags=nodocs --setopt timeout=5 install \
     http://rpms.remirepo.net/enterprise/remi-release-7.rpm \
   && yum-config-manager --enable remi-php<%= image.vars['remi_php_repo'] -%> \
-  && cd /etc/yum.repos.d \
-  && wget http://yum.oracle.com/public-yum-ol7.repo \
-  && wget http://yum.oracle.com/RPM-GPG-KEY-oracle-ol7 \
-  && rpm --import RPM-GPG-KEY-oracle-ol7 \
-  && yum-config-manager --enable ol7_oracle_instantclient \
-  && yum update -y \
   && yum -y --setopt tsflags=nodocs --setopt timeout=5 install \
   bzip2 \
   libxml2-devel \
@@ -25,17 +19,11 @@ RUN yum -y --setopt tsflags=nodocs --setopt timeout=5 install \
 <% image.vars['php_pecl'].each do |ext| -%> \
   php-pecl-<%= ext -%>
 <% end -%> \
-  # oracle-instantclient
-  oracle-instantclient<%= image.vars['oracle-instantclient_version'] -%>-basic \
-  oracle-instantclient<%= image.vars['oracle-instantclient_version'] -%>-devel \
-  oracle-instantclient<%= image.vars['oracle-instantclient_version'] -%>-sqlplus \
   && yum clean all -y
 
-# Link oracle-instantclient, set timezone, install composer, configure php-fpm 
+# Sset timezone, install composer, configure php-fpm 
 # ENV TZ=America/Vancouver - set in docker-compose.yml
-RUN echo /usr/lib/oracle/<%= image.vars['oracle-instantclient_version'] -%>/client64/lib > /etc/ld.so.conf.d/oracle-instantclient.conf \
-  && ldconfig \
-  && ln -snf /usr/share/zoneinfo/<%= image.vars['timezone'] -%> /etc/localtime \
+RUN ln -snf /usr/share/zoneinfo/<%= image.vars['timezone'] -%> /etc/localtime \
   && echo <%= image.vars['timezone'] -%> > /etc/timezone \
   && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
   && mkdir -p /run/php-fpm/ \
