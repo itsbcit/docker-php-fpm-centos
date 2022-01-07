@@ -21,7 +21,7 @@ RUN yum -y --setopt tsflags=nodocs --setopt timeout=5 install \
 <% end -%> \
   && yum clean all -y
 
-# Sset timezone, install composer, configure php-fpm 
+# Set timezone, install composer, configure php-fpm 
 # ENV TZ=America/Vancouver - set in docker-compose.yml
 RUN ln -snf /usr/share/zoneinfo/<%= image.vars['timezone'] -%> /etc/localtime \
   && echo <%= image.vars['timezone'] -%> > /etc/timezone \
