@@ -39,6 +39,7 @@ vars:
     - xml
   php_pecl:
     - igbinary
+    - xdebug
 variants:
   '':
   # 'oci':
