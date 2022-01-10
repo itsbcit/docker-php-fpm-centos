@@ -10,11 +10,12 @@ tags:
 versions:
   '7.3':
     tags:
+      - '7.3'
       - '7.3-latest'
     vars:
       oracle-instantclient_version: '19.6'
       remi_php_repo: '73'
-      php_pkg_version: '7.3.26'
+      php_pkg_version: '7.3.33'
   '7.4':
     tags:
       - '7.4-latest'
@@ -23,7 +24,7 @@ versions:
     vars:
       oracle-instantclient_version: '19.6'
       remi_php_repo: '74'
-      php_pkg_version: '7.4.14'
+      php_pkg_version: '7.4.27'
 vars:
   centos_version: '7'
   centos_tag: '7-latest'
