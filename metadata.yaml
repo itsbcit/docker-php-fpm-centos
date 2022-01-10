@@ -30,7 +30,6 @@ vars:
     - fpm
     - mbstring
     - mysqlnd
-    - oci8
     - pear
     - pdo
     - posix
