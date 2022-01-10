@@ -9,7 +9,6 @@ versions:
   '7.3':
     tags:
       - '7.3-latest'
-      - '7.3.26'
     vars:
       oracle-instantclient_version: '19.6'
       remi_php_repo: '73'
@@ -17,7 +16,6 @@ versions:
   '7.4':
     tags:
       - '7.4-latest'
-      - '7.4.14'
       - '7-latest'
     vars:
       oracle-instantclient_version: '19.6'
