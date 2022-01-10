@@ -19,6 +19,7 @@ versions:
     tags:
       - '7.4-latest'
       - '7-latest'
+      - 'latest'
     vars:
       oracle-instantclient_version: '19.6'
       remi_php_repo: '74'
