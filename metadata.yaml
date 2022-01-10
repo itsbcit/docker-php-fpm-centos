@@ -44,3 +44,5 @@ variants:
   # 'oci':
   #   registries:
   #     - url: artifactory.tis.bcit.ca:5000
+  #   php_extentions:
+  #     - oci8
