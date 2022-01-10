@@ -24,7 +24,7 @@ versions:
       remi_php_repo: '74'
       php_pkg_version: '7.4.14'
 vars:
-  centos_version: '7-latest'
+  centos_version: '7'
   timezone: 'America/Vancouver'
   php_extensions:
     - fpm
