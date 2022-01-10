@@ -7,7 +7,7 @@ labels:
 image_name: php-fpm
 versions:
   '7.3':
-    version_tags:
+    tags:
       - '7.3-latest'
       - '7.3.26'
     vars:
@@ -15,7 +15,7 @@ versions:
       remi_php_repo: '73'
       php_pkg_version: '7.3.26'
   '7.4':
-    version_tags:
+    tags:
       - '7.4-latest'
       - '7.4.14'
       - '7-latest'
