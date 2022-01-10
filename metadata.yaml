@@ -25,6 +25,7 @@ versions:
       php_pkg_version: '7.4.14'
 vars:
   centos_version: '7'
+  centos_tag: '7-latest'
   timezone: 'America/Vancouver'
   php_extensions:
     - fpm
