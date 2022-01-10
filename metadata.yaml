@@ -30,7 +30,6 @@ vars:
     - fpm
     - mbstring
     - mysqlnd
-    - pear
     - pdo
     - soap
     - sodium
