@@ -32,7 +32,6 @@ vars:
     - mysqlnd
     - pear
     - pdo
-    - posix
     - soap
     - sodium
     - xml
