@@ -49,6 +49,8 @@ vars:
     - redis
     - xdebug
     - yaml
+  disable_ext:
+    - ftp
     - xdebug
 variants:
   '':
