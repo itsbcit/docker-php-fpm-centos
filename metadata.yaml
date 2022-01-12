@@ -6,12 +6,13 @@ labels:
   php_version: '<%= vars["php_pkg_version"] %>'
 image_name: php-fpm
 tags:
+  - '<%= version %>'
+  - '<%= version %>-centos'
+  - '<%= version %>-latest'
   - '<%= vars["php_pkg_version"] %>'
+  - '<%= vars["php_pkg_version"] %>-centos'
 versions:
   '7.3':
-    tags:
-      - '7.3'
-      - '7.3-latest'
     vars:
       oracle-instantclient_version: '19.6'
       remi_php_repo: '73'
@@ -19,7 +20,10 @@ versions:
   '7.4':
     tags:
       - '7.4-latest'
+      - '7.4-centos'
       - '7-latest'
+      - '7-centos'
+      - 'centos'
       - 'latest'
     vars:
       oracle-instantclient_version: '19.6'
