@@ -31,14 +31,20 @@ vars:
   timezone: 'America/Vancouver'
   php_extensions:
     - fpm
+    - gmp
     - mbstring
     - mysqlnd
     - pdo
+    - pgsql
     - soap
     - sodium
     - xml
   php_pecl:
     - igbinary
+    - memcached
+    - redis
+    - xdebug
+    - yaml
     - xdebug
 variants:
   '':
