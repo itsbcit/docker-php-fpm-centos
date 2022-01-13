@@ -40,8 +40,18 @@ ADD zz-docker.conf /etc/php-fpm.d/zz-docker.conf
 ADD docker.conf /etc/php-fpm.d/docker.conf
 ADD www.conf /etc/php-fpm.d/www.conf
 
-RUN chmod 775 /usr/local/bin/docker-php-ext-enable \
-              /usr/local/bin/php-fpm-healthcheck
+# Set timezone, install composer, configure php-fpm 
+# ENV TZ=America/Vancouver - set in docker-compose.yml
+RUN ln -snf /usr/share/zoneinfo/<%= image.vars['timezone'] -%> /etc/localtime \
+  && echo <%= image.vars['timezone'] -%> > /etc/timezone \
+  && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
+  && mkdir -p /run/php-fpm/ \
+  && chmod -R 775 \ 
+     /run/php-fpm \
+     /etc/php-fpm.d \
+     /etc/php.d \
+     /usr/local/bin/docker-php-ext-enable \
+     /usr/local/bin/php-fpm-healthcheck
 
 WORKDIR /application
 HEALTHCHECK CMD /usr/local/bin/php-fpm-healthcheck
