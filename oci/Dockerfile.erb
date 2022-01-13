@@ -19,9 +19,9 @@ RUN yum -y --setopt tsflags=nodocs --setopt timeout=5 install \
   vim \
   zip \
   # php
-  php-<%= image.vars['php_pkg_version'] -%>
+  php-<%= image.vars['php_version'] -%>
 <% image.vars['php_extensions'].each do |ext| -%> \
-  php-<%= ext %>-<%= image.vars['php_pkg_version'] -%>
+  php-<%= ext %>-<%= image.vars['php_version'] -%>
 <% end -%>
 <% image.vars['php_pecl'].each do |ext| -%> \
   php-pecl-<%= ext -%>
