@@ -42,22 +42,74 @@ vars:
   centos_version: '7'
   centos_tag: '7-latest'
   timezone: 'America/Vancouver'
+  os_packages:
+    - bzip2
+    - fcgiwrap
+    - unzip
+    - vim
+    - zip
+  builder_packages:
+    - gcc
+    - php-pear
   php_extensions:
+    - bcmath
+    - dba
+    - enchant
     - fpm
+    - gd
     - gmp
+    - imap
+    - intl
+    - json
+    - ldap
     - mbstring
     - mysqlnd
+    - odbc
+    - opcache
     - pdo
+    - pdo-dblib
+    - process
     - pgsql
     - soap
     - sodium
+    - tidy
     - xml
+  php_pecl_builds:
+    - name: timezonedb
+      order: 20
   php_pecl:
+    - amqp
+    - ast
+    - couchbase
+    - event
     - igbinary
+    - imagick
+    - lzf
+    - mailparse
+    - mcrypt
     - memcached
+    - msgpack
+    - oauth
+    - protobuf
     - redis
+    - ssh2
+    # - timezonedb # TODO: needs custom build?
+    - vips
     - xdebug
     - yaml
+    - zmq
+  php_pear:
+    - mail_mime
+    - mdb2_driver_mysql
+    - auth_sasl2
+    - net_socket
+    - mdb2_driver_pgsql
+    - net_snmp
+    - net_smtp
+    - net_idna2
+    - auth_sasl
+    - net_smtp
+    - net_sieve
   disable_ext:
     - ftp
     - ldap
