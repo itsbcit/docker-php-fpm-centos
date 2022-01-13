@@ -4,6 +4,19 @@ registries:
   - url: bcit.io
 labels:
   php_version: '<%= vars["php_version"] %>'
+  centos_version: '<%= vars["centos_version"] %>'
+base_tags: []
+tags:
+  - '<%= tag_join(vars["php_version"], variant, "centos", build_suffix) %>'
+  - '<%= tag_join(vars["php_version"], variant, "thicc", build_suffix) %>'
+  - '<%= tag_join(vars["php_version"], variant, "centos", "latest") %>'
+  - '<%= tag_join(vars["php_version"], variant, "thicc", "latest") %>'
+  - '<%= tag_join(vars["php_version"], variant, "centos") %>'
+  - '<%= tag_join(vars["php_version"], variant, "thicc") %>'
+  - '<%= tag_join(version, variant, "centos", "latest") %>'
+  - '<%= tag_join(version, variant, "thicc", "latest") %>'
+  - '<%= tag_join(version, variant, "centos") %>'
+  - '<%= tag_join(version, variant, "thicc") %>'
 image_name: php-fpm
 versions:
   '7.3':
