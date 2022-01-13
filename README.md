@@ -1,2 +1,2 @@
-# openshift-php-fpm-ora-inst-client
-Centos 7 based php-fpm + oracle instant client with Openshift Shims
+# docker-php-fpm-centos
+Thicc Centos 7 based php-fpm image with everything and the kitchen sink
