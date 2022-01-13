@@ -38,6 +38,8 @@ versions:
       oracle-instantclient_version: '19.6'
       remi_php_repo: '74'
       php_version: '7.4.27'
+      php_pecl:
+        - wddx
 vars:
   centos_version: '7'
   centos_tag: '7-latest'
