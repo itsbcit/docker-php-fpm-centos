@@ -13,9 +13,11 @@ RUN yum -y  install \
 <% image.vars['php_extensions'].each do |ext| -%>
     php-<%= ext %>-<%= image.vars['php_version'] -%> \
 <% end -%>
-<% image.vars['php_pecl'].each do |ext| -%> \
-  php-pecl-<%= ext -%>
-<% end -%> \
+<% image.vars['php_pecl'].each do |ext| -%>
+    php-pecl-<%= ext -%> \
+<% end -%>
+    php-<%= image.vars['php_version'] -%> \
+    php-pear \
   && rm -rf /var/cache/yum
 
 # Set timezone, install composer, configure php-fpm 
