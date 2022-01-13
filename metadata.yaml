@@ -3,7 +3,7 @@ maintainer: 'jesse@weisner.ca, chriswood.ca@gmail.com, jonathan_zhao@bcit.ca'
 registries:
   - url: bcit.io
 labels:
-  php_version: '<%= vars["php_pkg_version"] %>'
+  php_version: '<%= vars["php_version"] %>'
 image_name: php-fpm
 tags:
   - '<%= version %>'
@@ -16,7 +16,7 @@ versions:
     vars:
       oracle-instantclient_version: '19.6'
       remi_php_repo: '73'
-      php_pkg_version: '7.3.33'
+      php_version: '7.3.33'
   '7.4':
     tags:
       - '7.4-latest'
@@ -28,7 +28,7 @@ versions:
     vars:
       oracle-instantclient_version: '19.6'
       remi_php_repo: '74'
-      php_pkg_version: '7.4.27'
+      php_version: '7.4.27'
 vars:
   centos_version: '7'
   centos_tag: '7-latest'
