@@ -20,18 +20,10 @@ RUN yum -y  install \
     php-pear \
   && rm -rf /var/cache/yum
 
-# Set timezone, install composer, configure php-fpm 
-# ENV TZ=America/Vancouver - set in docker-compose.yml
-RUN ln -snf /usr/share/zoneinfo/<%= image.vars['timezone'] -%> /etc/localtime \
-  && echo <%= image.vars['timezone'] -%> > /etc/timezone \
-  && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
-  && mkdir -p /run/php-fpm/ \
-  && sed -i "s$/var/log/php-fpm/error.log$/dev/stderr$" /etc/php-fpm.conf \
-  && sed -i s/127.0.0.1:9000/0.0.0.0:9000/ /etc/php-fpm.d/www.conf \
-  && sed -i s/127.0.0.1/any/ /etc/php-fpm.d/www.conf \
-  && chmod -R 775 /run/php-fpm \
-  && chmod -R 775 /etc/php-fpm.d \
-  && chmod -R 775 /etc/php.d
+<% image.vars['php_pecl_builds'].each do |pecl| -%>
+COPY --from=local/php-fpm:<%= image.version %>-centos-builder-b<%= image.build_id %> /etc/php.d/<%= pecl['order'] %>-<%= pecl['name'] %>.ini /etc/php.d/<%= pecl['order'] %>-<%= pecl['name'] %>.ini
+COPY --from=local/php-fpm:<%= image.version %>-centos-builder-b<%= image.build_id %> /usr/lib64/php/modules/<%= pecl['name'] %>.so /usr/lib64/php/modules/<%= pecl['name'] %>.so
+<% end -%>
 
 ADD https://raw.githubusercontent.com/php/php-src/PHP-<%= image.vars['php_version'] %>/php.ini-development /etc/php.ini-development
 ADD https://raw.githubusercontent.com/docker-library/php/master/docker-php-ext-enable /usr/local/bin/docker-php-ext-enable
