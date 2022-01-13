@@ -37,7 +37,7 @@ RUN ln -snf /usr/share/zoneinfo/<%= image.vars['timezone'] -%> /etc/localtime \
   && chmod -R 775 /etc/php-fpm.d \
   && chmod -R 775 /etc/php.d
 
-ADD https://raw.githubusercontent.com/php/php-src/PHP-<%= image.vars['php_pkg_version'] %>/php.ini-development /etc/php.ini-development
+ADD https://raw.githubusercontent.com/php/php-src/PHP-<%= image.vars['php_version'] %>/php.ini-development /etc/php.ini-development
 ADD https://raw.githubusercontent.com/docker-library/php/master/docker-php-ext-enable /usr/local/bin/docker-php-ext-enable
 ADD https://raw.githubusercontent.com/renatomefi/php-fpm-healthcheck/master/php-fpm-healthcheck /usr/local/bin/php-fpm-healthcheck
 ADD zz-docker.conf /etc/php-fpm.d/zz-docker.conf
