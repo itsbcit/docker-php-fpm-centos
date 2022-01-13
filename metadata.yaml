@@ -26,12 +26,14 @@ versions:
       php_version: '7.3.33'
   '7.4':
     tags:
-      - '7.4-latest'
-      - '7.4-centos'
-      - '7-latest'
+      - '7-centos-latest'
+      - '7-thicc-latest'
       - '7-centos'
+      - '7-thicc'
+      - 'centos-latest'
+      - 'thicc-latest'
       - 'centos'
-      - 'latest'
+      - 'thicc'
     vars:
       oracle-instantclient_version: '19.6'
       remi_php_repo: '74'
