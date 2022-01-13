@@ -112,13 +112,6 @@ vars:
     - auth_sasl
     - net_smtp
     - net_sieve
-  disable_ext:
-    - ftp
-    - ldap
-    - gd
-    - enchant
-    - odbc
-    - xdebug
 variants:
   centos-builder:
     test: false
