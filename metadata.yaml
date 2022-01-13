@@ -72,10 +72,13 @@ vars:
     - pdo-dblib
     - process
     - pgsql
+    - pspell
+    - snmp
     - soap
     - sodium
     - tidy
     - xml
+    - xmlrpc
   php_pecl_builds:
     - name: timezonedb
       order: 20
@@ -99,6 +102,7 @@ vars:
     - vips
     - xdebug
     - yaml
+    - zip
     - zmq
   php_pear:
     - mail_mime
