@@ -118,6 +118,10 @@ vars:
     - odbc
     - xdebug
 variants:
+  centos-builder:
+    test: false
+    tag: false
+    push: false
   '':
   # 'oci':
   #   registries:
