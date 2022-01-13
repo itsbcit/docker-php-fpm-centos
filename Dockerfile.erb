@@ -2,12 +2,11 @@ FROM bcit.io/centos:<%= image.vars['centos_tag'] %>
 
 <%= snippet('labels', binding) -%>
 
-# enable php7 & oracle repos then install system libs/utils, php-fpm
-RUN yum -y --setopt tsflags=nodocs --setopt timeout=5 --setopt=skip_missing_names_on_install=False install -e1 -d0 \
+RUN yum -y  install \
     http://rpms.remirepo.net/enterprise/remi-release-7.rpm \
   && rpmkeys --import /etc/pki/rpm-gpg/RPM-GPG-KEY-remi* /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-<%= image.vars['centos_version'] %> \
   && yum-config-manager -q --enable remi-php<%= image.vars['remi_php_repo'] -%> >/dev/null \
-  && yum -y --setopt tsflags=nodocs --setopt timeout=5 --setopt=skip_missing_names_on_install=False install -e1 -d0 \
+  && yum -y install \
   bzip2 \
   fcgiwrap \
   libxml2-devel \
