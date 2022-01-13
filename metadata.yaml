@@ -5,12 +5,6 @@ registries:
 labels:
   php_version: '<%= vars["php_version"] %>'
 image_name: php-fpm
-tags:
-  - '<%= version %>'
-  - '<%= version %>-centos'
-  - '<%= version %>-latest'
-  - '<%= vars["php_pkg_version"] %>'
-  - '<%= vars["php_pkg_version"] %>-centos'
 versions:
   '7.3':
     vars:
