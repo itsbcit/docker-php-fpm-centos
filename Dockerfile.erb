@@ -7,14 +7,9 @@ RUN yum -y  install \
   && rpmkeys --import /etc/pki/rpm-gpg/RPM-GPG-KEY-remi* /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-<%= image.vars['centos_version'] %> \
   && yum-config-manager -q --enable remi-php<%= image.vars['remi_php_repo'] -%> >/dev/null \
   && yum -y install \
-  bzip2 \
-  fcgiwrap \
-  libxml2-devel \
-  unzip \
-  vim \
-  zip \
-  php-<%= image.vars['php_pkg_version'] -%> \
-  php-pear \
+<% image.vars['os_packages'].each do |package| -%>
+    <%= package %> \
+<% end -%>
 <% image.vars['php_extensions'].each do |ext| -%>
   php-<%= ext %>-<%= image.vars['php_pkg_version'] -%> \
 <% end -%>
