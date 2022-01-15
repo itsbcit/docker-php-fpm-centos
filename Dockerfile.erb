@@ -5,7 +5,7 @@ FROM bcit.io/centos:<%= image.vars['centos_tag'] %>
 RUN yum -y  install \
     http://rpms.remirepo.net/enterprise/remi-release-7.rpm \
   && rpmkeys --import /etc/pki/rpm-gpg/RPM-GPG-KEY-remi* /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-<%= image.vars['centos_version'] %> \
-  && yum-config-manager -q --enable remi-php<%= image.vars['remi_php_repo'] -%> >/dev/null \
+  && yum-config-manager -q --enable remi remi-php<%= image.vars['remi_php_repo'] -%> >/dev/null \
   && yum -y install \
 <% image.vars['os_packages'].each do |package| -%>
     <%= package %> \
