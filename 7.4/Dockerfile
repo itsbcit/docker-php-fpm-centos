@@ -1,15 +1,15 @@
 FROM bcit.io/centos:7-latest
 
 LABEL maintainer="jesse@weisner.ca, chriswood.ca@gmail.com, jonathan_zhao@bcit.ca"
-LABEL build_id="1642102824"
+LABEL build_id="1642550390"
 LABEL php_version="7.4.27"
 LABEL centos_version="7"
 
 RUN yum -y  install \
     http://rpms.remirepo.net/enterprise/remi-release-7.rpm \
   && rpmkeys --import /etc/pki/rpm-gpg/RPM-GPG-KEY-remi* /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7 \
-  && yum-config-manager -q --enable remi-php74 >/dev/null \
-  && yum -y install -d2 -e2 \
+  && yum-config-manager -q --enable remi remi-php74 >/dev/null \
+  && yum -y install \
     bzip2 \
     fcgiwrap \
     unzip \
@@ -65,8 +65,8 @@ RUN yum -y  install \
     php-pear \
   && rm -rf /var/cache/yum
 
-COPY --from=local/php-fpm:7.4-centos-builder-b1642102824 /etc/php.d/20-timezonedb.ini /etc/php.d/20-timezonedb.ini
-COPY --from=local/php-fpm:7.4-centos-builder-b1642102824 /usr/lib64/php/modules/timezonedb.so /usr/lib64/php/modules/timezonedb.so
+COPY --from=local/php-fpm:7.4-centos-builder-b1642550390 /etc/php.d/20-timezonedb.ini /etc/php.d/20-timezonedb.ini
+COPY --from=local/php-fpm:7.4-centos-builder-b1642550390 /usr/lib64/php/modules/timezonedb.so /usr/lib64/php/modules/timezonedb.so
 
 ADD https://raw.githubusercontent.com/php/php-src/PHP-7.4.27/php.ini-development /etc/php.ini-development
 ADD https://raw.githubusercontent.com/docker-library/php/master/docker-php-ext-enable /usr/local/bin/docker-php-ext-enable
