@@ -1,5 +1,8 @@
 FROM bcit.io/centos:<%= image.vars['centos_tag'] %>
 
+ENV DISABLE_EXTENSIONS="xdebug curl enchant exif ftp gd imap ldap odbc snmp sysvmsg sysvsem sysvshm pdo_odbc amqp ast imagick mailparse ssh2 vips zmq couchbase"
+ENV ENABLE_EXTENSIONS=""
+
 <%= snippet('labels', binding) -%>
 
 RUN yum -y  install \
@@ -32,6 +35,7 @@ ADD zz-docker.conf /etc/php-fpm.d/zz-docker.conf
 ADD docker.conf /etc/php-fpm.d/docker.conf
 ADD www.conf /etc/php-fpm.d/www.conf
 ADD 50-copy-php-fpm-config.sh /docker-entrypoint.d/50-copy-php-fpm-config.sh
+ADD 60-php_extensions.sh /docker-entrypoint.d/60-php_extensions.sh
 
 # Set timezone, install composer, configure php-fpm 
 # ENV TZ=America/Vancouver - set in docker-compose.yml
