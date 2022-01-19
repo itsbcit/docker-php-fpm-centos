@@ -1,7 +1,7 @@
 FROM bcit.io/centos:7-latest
 
 LABEL maintainer="jesse@weisner.ca, chriswood.ca@gmail.com, jonathan_zhao@bcit.ca"
-LABEL build_id="1642550390"
+LABEL build_id="1642551073"
 LABEL php_version="7.3.33"
 LABEL centos_version="7"
 
@@ -64,8 +64,8 @@ RUN yum -y  install \
     php-pear \
   && rm -rf /var/cache/yum
 
-COPY --from=local/php-fpm:7.3-centos-builder-b1642550390 /etc/php.d/20-timezonedb.ini /etc/php.d/20-timezonedb.ini
-COPY --from=local/php-fpm:7.3-centos-builder-b1642550390 /usr/lib64/php/modules/timezonedb.so /usr/lib64/php/modules/timezonedb.so
+COPY --from=local/php-fpm:7.3-centos-builder-b1642551073 /etc/php.d/20-timezonedb.ini /etc/php.d/20-timezonedb.ini
+COPY --from=local/php-fpm:7.3-centos-builder-b1642551073 /usr/lib64/php/modules/timezonedb.so /usr/lib64/php/modules/timezonedb.so
 
 ADD https://raw.githubusercontent.com/php/php-src/PHP-7.3.33/php.ini-development /etc/php.ini-development
 ADD https://raw.githubusercontent.com/docker-library/php/master/docker-php-ext-enable /usr/local/bin/docker-php-ext-enable
@@ -73,6 +73,7 @@ ADD https://raw.githubusercontent.com/renatomefi/php-fpm-healthcheck/master/php-
 ADD zz-docker.conf /etc/php-fpm.d/zz-docker.conf
 ADD docker.conf /etc/php-fpm.d/docker.conf
 ADD www.conf /etc/php-fpm.d/www.conf
+ADD 50-copy-php-fpm-config.sh /docker-entrypoint.d/50-copy-php-fpm-config.sh
 
 # Set timezone, install composer, configure php-fpm 
 # ENV TZ=America/Vancouver - set in docker-compose.yml

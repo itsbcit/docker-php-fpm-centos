@@ -31,6 +31,7 @@ ADD https://raw.githubusercontent.com/renatomefi/php-fpm-healthcheck/master/php-
 ADD zz-docker.conf /etc/php-fpm.d/zz-docker.conf
 ADD docker.conf /etc/php-fpm.d/docker.conf
 ADD www.conf /etc/php-fpm.d/www.conf
+ADD 50-copy-php-fpm-config.sh /docker-entrypoint.d/50-copy-php-fpm-config.sh
 
 # Set timezone, install composer, configure php-fpm 
 # ENV TZ=America/Vancouver - set in docker-compose.yml
