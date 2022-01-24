@@ -36,19 +36,23 @@ ADD docker.conf /etc/php-fpm.d/docker.conf
 ADD www.conf /etc/php-fpm.d/www.conf
 ADD 50-copy-php-fpm-config.sh /docker-entrypoint.d/50-copy-php-fpm-config.sh
 ADD 60-php_extensions.sh /docker-entrypoint.d/60-php_extensions.sh
+ADD php.ini-development /etc/php.ini-development
 
 # Set timezone, install composer, configure php-fpm 
 # ENV TZ=America/Vancouver - set in docker-compose.yml
 RUN ln -snf /usr/share/zoneinfo/<%= image.vars['timezone'] -%> /etc/localtime \
-  && echo <%= image.vars['timezone'] -%> > /etc/timezone \
-  && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
-  && mkdir -p /run/php-fpm/ \
-  && chmod -R 775 \ 
-     /run/php-fpm \
-     /etc/php-fpm.d \
-     /etc/php.d \
-     /usr/local/bin/docker-php-ext-enable \
-     /usr/local/bin/php-fpm-healthcheck
+ && echo <%= image.vars['timezone'] -%> > /etc/timezone \
+ && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
+ && mkdir -p /run/php-fpm/ \
+ && chmod -R 775 \ 
+      /run/php-fpm \
+      /etc/php-fpm.d \
+      /etc/php.d \
+      /usr/local/bin/docker-php-ext-enable \
+      /usr/local/bin/php-fpm-healthcheck \
+ && chmod 664 \
+      /etc/php.ini \
+      /etc/php.ini-development 
 
 WORKDIR /application
 HEALTHCHECK CMD /usr/local/bin/php-fpm-healthcheck
