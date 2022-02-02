@@ -7,16 +7,6 @@ labels:
   centos_version: '<%= vars["centos_version"] %>'
 base_tags: []
 tags:
-  - '<%= tag_join(vars["php_version"], variant, "centos", build_suffix) %>'
-  - '<%= tag_join(vars["php_version"], variant, "thicc", build_suffix) %>'
-  - '<%= tag_join(vars["php_version"], variant, "centos", "latest") %>'
-  - '<%= tag_join(vars["php_version"], variant, "thicc", "latest") %>'
-  - '<%= tag_join(vars["php_version"], variant, "centos") %>'
-  - '<%= tag_join(vars["php_version"], variant, "thicc") %>'
-  - '<%= tag_join(version, variant, "centos", "latest") %>'
-  - '<%= tag_join(version, variant, "thicc", "latest") %>'
-  - '<%= tag_join(version, variant, "centos") %>'
-  - '<%= tag_join(version, variant, "thicc") %>'
 image_name: php-fpm
 versions:
   '7.3':
@@ -25,21 +15,23 @@ versions:
       remi_php_repo: '73'
       php_version: '7.3.33'
   '7.4':
-    tags:
-      - '7-centos-latest'
-      - '7-thicc-latest'
-      - '7-centos'
-      - '7-thicc'
-      - 'centos-latest'
-      - 'thicc-latest'
-      - 'centos'
-      - 'thicc'
     vars:
       oracle-instantclient_version: '19.6'
       remi_php_repo: '74'
       php_version: '7.4.27'
       php_pecl:
         - wddx
+    variants:
+      centos:
+        tags:
+          - '7-centos-latest'
+          - '7-thicc-latest'
+          - '7-centos'
+          - '7-thicc'
+          - 'centos-latest'
+          - 'thicc-latest'
+          - 'centos'
+          - 'thicc'
 vars:
   centos_version: '7'
   centos_tag: '7-latest'
@@ -121,4 +113,24 @@ variants:
     test: false
     tag: false
     push: false
-  '':
+  centos:
+    tags:
+      - '<%= tag_join(version, variant, build_suffix) %>'
+      - '<%= tag_join(version, variant, "latest") %>'
+      - '<%= tag_join(version, variant) %>'
+      - '<%= tag_join(vars["php_version"], "thicc", build_suffix) %>'
+      - '<%= tag_join(vars["php_version"], "thicc", "latest") %>'
+      - '<%= tag_join(vars["php_version"], "thicc") %>'
+      - '<%= tag_join(version, "thicc", "latest") %>'
+      - '<%= tag_join(version, "thicc") %>'
+  debug:
+    tag: false
+    push: false
+    test: false
+    tags:
+      - '<%= tag_join(version, "centos", variant, build_suffix) %>'
+      - '<%= tag_join(version, "centos", variant, "latest") %>'
+      - '<%= tag_join(version, "centos", variant) %>'
+      - '<%= tag_join(vars["php_version"], "centos", variant, build_suffix) %>'
+      - '<%= tag_join(vars["php_version"], "centos", variant, "latest") %>'
+      - '<%= tag_join(vars["php_version"], "centos", variant) %>'

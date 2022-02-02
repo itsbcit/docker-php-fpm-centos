@@ -13,23 +13,23 @@ for f in $config_path/*; do
 
     case "$filename" in
         php.ini)
-            mv -v $f $php_base_path/
+            cp -v $f $php_base_path/
             ;;
         php-zts.d-*.ini)
             [ -d "$zts_conf_dir" ] || continue
             fn=$(echo $filename | sed "s/php-zts\.d-//")
-            mv -v $f $php_base_path/$zts_conf_dir/$fn
+            cp -v $f $php_base_path/$zts_conf_dir/$fn
             ;;
         php.d-*|*.ini)
             fn=$(echo $filename | sed "s/php\.d-//")
-            mv -v $f $php_base_path/$php_conf_dir/$fn
+            cp -v $f $php_base_path/$php_conf_dir/$fn
             ;;
         $php_inst_conf_file)
-            mv -v $f $php_base_path/
+            cp -v $f $php_base_path/
             ;;
         php-fpm.d-*.conf|*.conf)
             fn=$(echo $filename | sed "s/php-fpm\.d-//")
-            mv -v $f $php_base_path/$fpm_conf_dir/$fn
+            cp -v $f $php_base_path/$fpm_conf_dir/$fn
             ;;
     esac
 done

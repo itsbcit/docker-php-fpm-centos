@@ -4,45 +4,45 @@ ENV DISABLE_EXTENSIONS="xdebug curl enchant exif ftp gd imap ldap odbc snmp sysv
 ENV ENABLE_EXTENSIONS=""
 
 LABEL maintainer="jesse@weisner.ca, chriswood.ca@gmail.com, jonathan_zhao@bcit.ca"
-LABEL build_id="1643052849"
-LABEL php_version="7.3.33"
+LABEL build_id="1643841594"
+LABEL php_version="7.4.27"
 LABEL centos_version="7"
 
 RUN yum -y  install \
     http://rpms.remirepo.net/enterprise/remi-release-7.rpm \
   && rpmkeys --import /etc/pki/rpm-gpg/RPM-GPG-KEY-remi* /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7 \
-  && yum-config-manager -q --enable remi remi-php73 >/dev/null \
+  && yum-config-manager -q --enable remi remi-php74 >/dev/null \
   && yum -y install \
     bzip2 \
     fcgiwrap \
     unzip \
     vim \
     zip \
-    php-bcmath-7.3.33 \
-    php-dba-7.3.33 \
-    php-enchant-7.3.33 \
-    php-fpm-7.3.33 \
-    php-gd-7.3.33 \
-    php-gmp-7.3.33 \
-    php-imap-7.3.33 \
-    php-intl-7.3.33 \
-    php-json-7.3.33 \
-    php-ldap-7.3.33 \
-    php-mbstring-7.3.33 \
-    php-mysqlnd-7.3.33 \
-    php-odbc-7.3.33 \
-    php-opcache-7.3.33 \
-    php-pdo-7.3.33 \
-    php-pdo-dblib-7.3.33 \
-    php-process-7.3.33 \
-    php-pgsql-7.3.33 \
-    php-pspell-7.3.33 \
-    php-snmp-7.3.33 \
-    php-soap-7.3.33 \
-    php-sodium-7.3.33 \
-    php-tidy-7.3.33 \
-    php-xml-7.3.33 \
-    php-xmlrpc-7.3.33 \
+    php-bcmath-7.4.27 \
+    php-dba-7.4.27 \
+    php-enchant-7.4.27 \
+    php-fpm-7.4.27 \
+    php-gd-7.4.27 \
+    php-gmp-7.4.27 \
+    php-imap-7.4.27 \
+    php-intl-7.4.27 \
+    php-json-7.4.27 \
+    php-ldap-7.4.27 \
+    php-mbstring-7.4.27 \
+    php-mysqlnd-7.4.27 \
+    php-odbc-7.4.27 \
+    php-opcache-7.4.27 \
+    php-pdo-7.4.27 \
+    php-pdo-dblib-7.4.27 \
+    php-process-7.4.27 \
+    php-pgsql-7.4.27 \
+    php-pspell-7.4.27 \
+    php-snmp-7.4.27 \
+    php-soap-7.4.27 \
+    php-sodium-7.4.27 \
+    php-tidy-7.4.27 \
+    php-xml-7.4.27 \
+    php-xmlrpc-7.4.27 \
     php-pecl-amqp \
     php-pecl-ast \
     php-pecl-couchbase \
@@ -63,14 +63,15 @@ RUN yum -y  install \
     php-pecl-yaml \
     php-pecl-zip \
     php-pecl-zmq \
-    php-7.3.33 \
+    php-pecl-wddx \
+    php-7.4.27 \
     php-pear \
   && rm -rf /var/cache/yum
 
-COPY --from=local/php-fpm:7.3-centos-builder-b1643052849 /etc/php.d/20-timezonedb.ini /etc/php.d/20-timezonedb.ini
-COPY --from=local/php-fpm:7.3-centos-builder-b1643052849 /usr/lib64/php/modules/timezonedb.so /usr/lib64/php/modules/timezonedb.so
+COPY --from=local/php-fpm:7.4-centos-builder-b1643841594 /etc/php.d/20-timezonedb.ini /etc/php.d/20-timezonedb.ini
+COPY --from=local/php-fpm:7.4-centos-builder-b1643841594 /usr/lib64/php/modules/timezonedb.so /usr/lib64/php/modules/timezonedb.so
 
-ADD https://raw.githubusercontent.com/php/php-src/PHP-7.3.33/php.ini-development /etc/php.ini-development
+ADD https://raw.githubusercontent.com/php/php-src/PHP-7.4.27/php.ini-development /etc/php.ini-development
 ADD https://raw.githubusercontent.com/docker-library/php/master/docker-php-ext-enable /usr/local/bin/docker-php-ext-enable
 ADD https://raw.githubusercontent.com/renatomefi/php-fpm-healthcheck/master/php-fpm-healthcheck /usr/local/bin/php-fpm-healthcheck
 ADD zz-docker.conf /etc/php-fpm.d/zz-docker.conf
