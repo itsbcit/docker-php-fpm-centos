@@ -18,7 +18,7 @@ versions:
     vars:
       oracle-instantclient_version: '19.6'
       remi_php_repo: '74'
-      php_version: '7.4.27'
+      php_version: '7.4.28' 
       php_pecl:
         - wddx
     variants:

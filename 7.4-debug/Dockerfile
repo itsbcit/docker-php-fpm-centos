@@ -1,1 +1,1 @@
-FROM local/php-fpm:7.4-centos-b1643841594
+FROM local/php-fpm:7.4-centos-b1645227754
